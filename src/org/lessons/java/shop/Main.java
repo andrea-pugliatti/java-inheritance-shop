@@ -15,5 +15,9 @@ public class Main {
         Televisore tv = new Televisore("XT100", "Samsung", new BigDecimal(1300), new BigDecimal(22), 72, true);
 
         System.out.println(tv.toString());
+
+        Cuffie headphones = new Cuffie("WM1000", "Sony", new BigDecimal(300), new BigDecimal(22), "Black", true);
+
+        System.out.println(headphones.toString());
     }
 }
