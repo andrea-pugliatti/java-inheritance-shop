@@ -30,7 +30,7 @@ Create una classe Carrello con metodo main, in cui chiedete all’utente di valo
  
 Durante la richiesta di valorizzazione chiedete all’utente se sta inserendo uno Smartphone o un Televisore o Cuffie e in base alla scelta dell’utente utilizzate il costruttore opportuno.
 
-Al termine dell’inserimento stampate il carrello (fate l’override del metodo toString per restituire le informazioni da stampare per ogni classe)
+Al termine dell’inserimento stampate il carrello (fate l’override del metodo toString per restituire le informazioni da stampare per ogni classe).
 
 **Bonus:**
 
@@ -42,6 +42,6 @@ Per i Televisori lo sconto è del 10% se la televisione non è smart, altrimenti
 
 Per le Cuffie lo sconto è del 7% se sono cablate, altrimenti rimane del 2%.
 
-Nella classe carrello chiedere all’utente se possiede una carta fedeltà
+Nella classe carrello chiedere all’utente se possiede una carta fedeltà.
 
 In base alla risposta, calcolare il totale del carrello come somma dei prezzi base o dei prezzi scontati.

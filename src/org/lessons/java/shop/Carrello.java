@@ -1,6 +1,7 @@
 package org.lessons.java.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Scanner;
 
 public class Carrello {
@@ -69,12 +70,25 @@ public class Carrello {
             }
         }
 
+        System.out.println("Hai la carta fedeltà? (true/false)");
+        boolean loyaltyCard = Boolean.parseBoolean(in.nextLine());
+
         in.close();
+
+        BigDecimal total = new BigDecimal(0);
 
         System.out.println("Carrello: ");
 
         for (Prodotto p : products) {
             System.out.println(p);
+            if (loyaltyCard) {
+                total = total.add(p.getDiscountedPrice());
+            } else {
+                total = total.add(p.getFullPrice());
+            }
         }
+
+        System.out.println("Totale: " + total.setScale(2, RoundingMode.DOWN));
+
     }
 }

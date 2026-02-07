@@ -1,6 +1,7 @@
 package org.lessons.java.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Televisore extends Prodotto {
     private int size;
@@ -26,6 +27,18 @@ public class Televisore extends Prodotto {
 
     public void setIsSmart(boolean isSmart) {
         this.isSmart = isSmart;
+    }
+
+    @Override
+    public BigDecimal getDiscountedPrice() {
+        int discount = 2;
+        if (!this.isSmart()) {
+            discount = 10;
+        }
+
+        return this.getFullPrice()
+                .subtract(this.getFullPrice().multiply(new BigDecimal(discount)).divide(new BigDecimal(100)))
+                .setScale(2, RoundingMode.DOWN);
     }
 
     @Override

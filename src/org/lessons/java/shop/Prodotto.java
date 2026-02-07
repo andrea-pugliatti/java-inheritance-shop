@@ -72,6 +72,14 @@ public class Prodotto {
         return null;
     }
 
+    public BigDecimal getDiscountedPrice() {
+        int discount = 2;
+
+        return this.getFullPrice()
+                .subtract(this.getFullPrice().multiply(new BigDecimal(discount)).divide(new BigDecimal(100)))
+                .setScale(2, RoundingMode.DOWN);
+    }
+
     public String getFullName() {
         if (this.name != null) {
             return String.format("%d - %s", this.code, this.name);
