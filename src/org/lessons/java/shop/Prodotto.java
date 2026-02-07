@@ -79,4 +79,12 @@ public class Prodotto {
         return null;
     }
 
+    @Override
+    public String toString() {
+        if (this.name != null && this.brand != null && this.price != null) {
+            return String.format("%d - %s %s - Prezzo: %s", this.code, this.brand, this.name,
+                    this.getFullPrice().toString());
+        }
+        return null;
+    }
 }
