@@ -2,6 +2,7 @@ package org.lessons.java.shop;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.security.InvalidParameterException;
 import java.util.Random;
 
 public class Prodotto {
@@ -12,20 +13,16 @@ public class Prodotto {
     private BigDecimal vat;
 
     public Prodotto(String name, String brand, BigDecimal price, BigDecimal vat) {
-        this();
+        if (name == null || brand == null || price == null || vat == null) {
+            throw new InvalidParameterException();
+        }
+
+        Random r = new Random();
+        this.code = r.nextInt(10000);
         this.name = name;
         this.brand = brand;
         this.price = price;
         this.vat = vat;
-    }
-
-    public Prodotto() {
-        Random r = new Random();
-        this.code = r.nextInt(10000);
-        this.name = "";
-        this.brand = "";
-        this.price = new BigDecimal(0);
-        this.vat = new BigDecimal(0);
     }
 
     public int getCode() {
@@ -37,6 +34,9 @@ public class Prodotto {
     }
 
     public void setName(String name) {
+        if (name == null) {
+            throw new InvalidParameterException();
+        }
         this.name = name;
     }
 
@@ -45,6 +45,9 @@ public class Prodotto {
     }
 
     public void setBrand(String brand) {
+        if (brand == null) {
+            throw new InvalidParameterException();
+        }
         this.brand = brand;
     }
 
@@ -53,6 +56,10 @@ public class Prodotto {
     }
 
     public void setPrice(BigDecimal price) {
+        if (price == null) {
+            throw new InvalidParameterException();
+        }
+
         this.price = price;
     }
 
@@ -61,15 +68,16 @@ public class Prodotto {
     }
 
     public void setVat(BigDecimal vat) {
+        if (price == null) {
+            throw new InvalidParameterException();
+        }
         this.vat = vat;
     }
 
     public BigDecimal getFullPrice() {
-        if (price != null && vat != null) {
-            return this.price.add(this.price.multiply(this.vat).divide(new BigDecimal(100))).setScale(2,
-                    RoundingMode.DOWN);
-        }
-        return null;
+        return this.price.add(this.price.multiply(this.vat).divide(new BigDecimal(100))).setScale(2,
+                RoundingMode.DOWN);
+
     }
 
     public BigDecimal getDiscountedPrice() {
@@ -81,18 +89,13 @@ public class Prodotto {
     }
 
     public String getFullName() {
-        if (this.name != null) {
-            return String.format("%d - %s", this.code, this.name);
-        }
-        return null;
+        return String.format("%d - %s", this.code, this.name);
     }
 
     @Override
     public String toString() {
-        if (this.name != null && this.brand != null && this.price != null) {
-            return String.format("%d - %s %s - Prezzo: %s", this.code, this.brand, this.name,
-                    this.getFullPrice().toString());
-        }
-        return null;
+        return String.format("%d - %s %s - Prezzo: %s", this.code, this.brand, this.name,
+                this.getFullPrice().toString());
+
     }
 }
